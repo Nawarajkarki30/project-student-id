@@ -45,21 +45,36 @@ const IdCardPreview = ({ cardData }) => {
         </div>
 
         {/* Detailed Info Grid */}
-        <div className="mt-6 px-8 text-sm text-gray-700">
-          <div className="grid grid-cols-[1fr_2fr] gap-y-2 mb-4 font-medium">
-            <div className="text-gray-900">Email</div>
+        <div className="mt-4 px-6 text-xs text-gray-700 pb-28">
+          <div className="grid grid-cols-[1fr_2fr] gap-y-1 mb-2 font-medium">
+            <div className="text-gray-900 font-bold">ID No</div>
+            <div className="truncate">: {cardData.studentId}</div>
+            
+            <div className="text-gray-900 font-bold">Class/Sec</div>
+            <div className="truncate">: {cardData.class} - {cardData.section}</div>
+
+            <div className="text-gray-900 font-bold">Blood Grp</div>
+            <div className="truncate">: {cardData.bloodGroup}</div>
+
+            <div className="text-gray-900 font-bold">Email</div>
             <div className="truncate">: {cardData.studentEmail}</div>
             
-            <div className="text-gray-900">Address</div>
+            <div className="text-gray-900 font-bold">Address</div>
             <div className="truncate">: {cardData.address}</div>
             
-            <div className="text-gray-900">DOB</div>
+            <div className="text-gray-900 font-bold">Guardian Ph</div>
+            <div className="truncate">: {cardData.guardianPhone}</div>
+
+            <div className="text-gray-900 font-bold">DOB</div>
             <div>: {cardData.dob ? new Date(cardData.dob).toLocaleDateString() : 'N/A'}</div>
+
+            <div className="text-gray-900 font-bold">Issue Date</div>
+            <div>: {cardData.issueDate ? new Date(cardData.issueDate).toLocaleDateString() : 'N/A'}</div>
             
-            <div className="text-gray-900">Expiry</div>
+            <div className="text-gray-900 font-bold">Expiry</div>
             <div>: {cardData.expiryDate ? new Date(cardData.expiryDate).toLocaleDateString() : 'N/A'}</div>
             
-            <div className="text-gray-900">Position</div>
+            <div className="text-gray-900 font-bold">Position</div>
             <div>: {cardData.position || 'Student'}</div>
           </div>
         </div>
