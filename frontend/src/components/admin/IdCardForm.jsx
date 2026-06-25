@@ -42,8 +42,8 @@ const IdCardForm = ({ initialData = {}, onSubmit, isLoading }) => {
 
     try {
       const { data } = await uploadImageApi(file);
-      if (type === 'photo') setFormData({ ...formData, studentPhoto: data.imageUrl });
-      if (type === 'logo') setFormData({ ...formData, schoolLogo: data.imageUrl });
+      if (type === 'photo') setFormData({ ...formData, studentPhoto: data.url });
+      if (type === 'logo') setFormData({ ...formData, schoolLogo: data.url });
     } catch (err) {
       setErrorMsg('Image upload failed. Please try again.');
     } finally {
