@@ -99,6 +99,34 @@ The project is cleanly separated into two main directories:
    npm run dev
    ```
 
+## 🧠 Technical Architecture & Implementation Details (For Supervisor Review)
+
+This project strictly adheres to modern MERN stack principles. Below is a breakdown of the core technical decisions and implementations:
+
+### 1. State Management (Zustand)
+Instead of relying heavily on `useState` drilling or complex Redux boilerplate, this project uses **Zustand**. 
+- **Why Zustand?** It provides a lightweight, hook-based global state.
+- **Implementation:** We have two main stores: `useAuthStore` (manages the logged-in user, JWT token, and role) and `useIdCardStore` (handles fetching, adding, and editing ID cards). This keeps the React components clean and focused strictly on the UI.
+
+### 2. React Hooks & Component Architecture
+The application makes heavy use of React's functional component architecture:
+- **`useState`:** Used for local component state, particularly for handling controlled inputs in the `IdCardForm.jsx` (e.g., tracking typed text before submitting).
+- **`useEffect`:** Used to trigger side-effects, such as automatically fetching the student's ID card from the database as soon as the `StudentDashboard.jsx` component mounts.
+- **Custom Hooks (`useAuth`, `useIdCards`):** Encapsulate API calling logic so the components don't become bloated with Axios `try/catch` blocks.
+
+### 3. Role-Based Routing (React Router)
+- **Implementation:** The `ProtectedRoute.jsx` component acts as a gatekeeper. It wraps around our routes in `AppRoutes.jsx`. 
+- **Logic:** If a user is not logged in, they are redirected to `/login`. If a `student` tries to access `/admin/dashboard`, the `ProtectedRoute` checks their `user.role` from the Zustand store and redirects them back to the `/student/dashboard`. This ensures a strict separation of concerns.
+
+### 4. Image Handling (Cloudinary + Multer)
+- **The Problem:** Saving raw image files directly into a MongoDB database severely degrades performance and bloats database size.
+- **The Solution:** We implemented **Cloudinary**, a cloud-based media delivery network.
+- **How it works:** When an admin uploads a student photo, the frontend sends the file to the Express backend. The backend uses `multer` to temporarily hold the file, then securely uploads it to Cloudinary. Cloudinary returns a lightweight **URL string**. We save only this URL string in our MongoDB database. When the frontend needs to show the image, it simply uses an `<img src={url} />` tag.
+
+### 5. Print Optimization
+- The ID card printing functionality relies on advanced CSS rather than a heavy PDF-generation library. 
+- Using Tailwind's `print:hidden` classes, we strip away the navigation bars, buttons, and backgrounds when the browser's print dialog opens, ensuring only the styled `IdCardPreview` component is rendered to the printer or saved as a PDF.
+
 ## 🔒 Security Concepts Implemented
 - **Password Hashing:** Passwords are never stored in plain text.
 - **JWT Authentication:** Secure stateless authentication tokens.
