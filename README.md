@@ -151,3 +151,12 @@ As a team of two developers, we successfully achieved the following milestones t
 5. **ID Card Polish:** Finalized the `IdCardPreview` component to include all required fields (Student ID, Class/Section, Blood Group, Guardian Phone, Issue Date, etc.) matching the project requirements perfectly.
 6. **Print Capabilities:** Added `print:hidden` utility classes to ensure the print dialog strictly exports the beautifully formatted ID card without any UI clutter.
 7. **Environment Setup & Seeding:** Configured the MongoDB Atlas connection and Cloudinary keys in `.env`, and created a utility script (`seedAdmin.js`) to seamlessly generate the very first admin login account.
+
+## 🤖 Future Workspace Skills (AI Automation)
+To maintain code quality and standardize future development, this project recommends setting up AI Agent skills in the `.agents/skills/` directory.
+
+### Recommended Skills to Add:
+1. **`unslop-ui`**: A skill that forces AI agents to audit Tailwind CSS layouts for premium aesthetics, consistent spacing, and modern UI/UX principles (like micro-animations and color harmony).
+2. **`mern-scaffold`**: A code generator skill that enforces strict boilerplate rules when asking the AI to build new features (e.g., automatically generating a Mongoose Model, Express Controller with `asyncHandler`, and Zustand store logic).
+3. **`security-audit`**: A vulnerability checker that forces the AI to check for JWT flaws, RBAC logic gaps, and data isolation before finalizing any backend changes.
+4. **`test-writer`**: A skill that automatically writes API tests (e.g., using Jest/Supertest) for any newly created Express routes.
