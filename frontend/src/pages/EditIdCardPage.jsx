@@ -20,6 +20,12 @@ const EditIdCardPage = () => {
     init();
   }, [id, fetchIdCardById]);
 
+  useEffect(() => {
+    if (error) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [error]);
+
   const handleSubmit = async (formData) => {
     try {
       await updateIdCard(id, formData);
@@ -40,7 +46,7 @@ const EditIdCardPage = () => {
     );
   }
 
-  if (error || !selectedIdCard) {
+  if (error && !selectedIdCard) {
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col">
         <Navbar />
@@ -69,6 +75,12 @@ const EditIdCardPage = () => {
           <h1 className="text-3xl font-bold text-gray-900">Edit ID Card</h1>
           <p className="text-gray-500 mt-1">Update details for {selectedIdCard.studentName}</p>
         </div>
+
+        {error && (
+          <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6 border border-red-200">
+            {error}
+          </div>
+        )}
 
         <IdCardForm initialData={selectedIdCard} onSubmit={handleSubmit} isLoading={isLoading} />
       </main>

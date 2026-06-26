@@ -6,8 +6,8 @@ const IdCardForm = ({ initialData = {}, onSubmit, isLoading }) => {
     studentName: initialData.studentName || '',
     studentEmail: initialData.studentEmail || '',
     studentPassword: '', // Only for creation usually, or optional on edit
-    studentId: initialData.studentId || '',
-    class: initialData.class || '',
+    rollNumber: initialData.rollNumber || '',
+    className: initialData.className || '',
     section: initialData.section || '',
     dob: initialData.dob ? initialData.dob.split('T')[0] : '',
     bloodGroup: initialData.bloodGroup || '',
@@ -56,6 +56,7 @@ const IdCardForm = ({ initialData = {}, onSubmit, isLoading }) => {
     e.preventDefault();
     if (!formData.studentPhoto) {
       setErrorMsg('Student photo is required');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     onSubmit(formData);
@@ -129,13 +130,13 @@ const IdCardForm = ({ initialData = {}, onSubmit, isLoading }) => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Student ID / Roll No *</label>
-          <input type="text" name="studentId" required value={formData.studentId} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
+          <input type="text" name="rollNumber" required value={formData.rollNumber} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Class/Grade</label>
-            <input type="text" name="class" required value={formData.class} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
+            <input type="text" name="className" required value={formData.className} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Section</label>
@@ -177,6 +178,16 @@ const IdCardForm = ({ initialData = {}, onSubmit, isLoading }) => {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">School Name *</label>
           <input type="text" name="schoolName" required value={formData.schoolName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">School Address *</label>
+          <input type="text" name="schoolAddress" required value={formData.schoolAddress} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">School Contact *</label>
+          <input type="text" name="schoolContact" required value={formData.schoolContact} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
         <div>

@@ -100,9 +100,9 @@ const AdminDashboard = () => {
                   <h3 className="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition truncate">
                     {card.studentName}
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1">{card.studentId}</p>
+                  <p className="text-sm text-gray-500 mt-1">{card.rollNumber}</p>
                   <p className="text-xs text-gray-400 mt-1 uppercase tracking-wide">
-                    Class {card.class} - Sec {card.section}
+                    Class {card.className} - Sec {card.section}
                   </p>
                 </div>
               </Link>

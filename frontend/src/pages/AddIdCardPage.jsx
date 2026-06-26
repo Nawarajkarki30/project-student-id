@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useIdCardStore } from '../store/idCardStore';
 import Navbar from '../components/common/Navbar';
 import IdCardForm from '../components/admin/IdCardForm';
 
 const AddIdCardPage = () => {
-  const { createIdCard, isLoading } = useIdCardStore();
+  const { createIdCard, isLoading, error } = useIdCardStore();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (error) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [error]);
 
   const handleSubmit = async (formData) => {
     try {
       await createIdCard(formData);
       navigate('/admin/dashboard');
     } catch (error) {
-      // Error handled by store and shown via form if needed, or toast
+      // Error is caught by the store and will be displayed via the error state
       console.error(error);
     }
   };
@@ -30,6 +36,12 @@ const AddIdCardPage = () => {
           <h1 className="text-3xl font-bold text-gray-900">Create New ID Card</h1>
           <p className="text-gray-500 mt-1">Fill in the details below to generate a student ID card and account.</p>
         </div>
+
+        {error && (
+          <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6 border border-red-200">
+            {error}
+          </div>
+        )}
 
         <IdCardForm onSubmit={handleSubmit} isLoading={isLoading} />
       </main>

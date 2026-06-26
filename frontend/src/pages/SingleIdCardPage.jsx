@@ -72,46 +72,41 @@ const SingleIdCardPage = () => {
           <p className="text-gray-500 mt-1">Review, edit, print, or delete this student's ID card.</p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 items-start">
-          <div className="w-full md:w-auto mx-auto print:mx-0">
+        <div className="flex flex-col items-center gap-6">
+          <div className="w-full max-w-[380px] mx-auto print:mx-0 print:max-w-none">
             <IdCardPreview cardData={selectedIdCard} />
+            
+            <div className="bg-gray-200 p-4 mt-4 flex justify-between gap-3 print:hidden">
+              <Link
+                to={`/admin/edit-id/${selectedIdCard._id}`}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-[#0d6efd] text-white rounded hover:bg-blue-700 transition shadow-sm font-medium"
+              >
+                ✎ Edit
+              </Link>
+
+              <button
+                onClick={handleDelete}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-[#dc3545] text-white rounded hover:bg-red-700 transition shadow-sm font-medium"
+              >
+                🗑️ Delete
+              </button>
+              
+              <button
+                onClick={handlePrint}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-[#198754] text-white rounded hover:bg-green-700 transition shadow-sm font-medium"
+              >
+                🖨️ Print
+              </button>
+            </div>
           </div>
 
-          <div className="w-full md:flex-1 space-y-4 print:hidden">
-            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 border-b pb-2">Actions</h3>
-              <div className="flex flex-col gap-3">
-                <Link
-                  to={`/admin/edit-id/${selectedIdCard._id}`}
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm font-medium"
-                >
-                  ✎ Edit ID Card
-                </Link>
-                
-                <button
-                  onClick={handlePrint}
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition shadow-sm font-medium"
-                >
-                  🖨️ Print ID Card
-                </button>
-
-                <button
-                  onClick={handleDelete}
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition shadow-sm font-medium mt-4"
-                >
-                  🗑️ Delete ID Card
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-sm text-gray-600">
-              <h3 className="text-md font-bold text-gray-900 mb-2">Printing Tips</h3>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Ensure "Background Graphics" is enabled in the print dialog.</li>
-                <li>Set margins to "None" or "Minimum".</li>
-                <li>Scale the print to 100% for standard ID card size.</li>
-              </ul>
-            </div>
+          <div className="w-full max-w-[380px] mt-4 p-5 rounded-xl border border-gray-200 shadow-sm text-sm text-gray-600 bg-white print:hidden">
+            <h3 className="text-md font-bold text-gray-900 mb-2">Printing Tips</h3>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Ensure "Background Graphics" is enabled in the print dialog.</li>
+              <li>Set margins to "None" or "Minimum".</li>
+              <li>Scale the print to 100% for standard ID card size.</li>
+            </ul>
           </div>
         </div>
       </main>
