@@ -142,7 +142,7 @@ The UI is built with a focus on modern, premium aesthetics using Tailwind CSS. I
 ## 📅 Recent Updates (Changelog)
 
 **Today's Collaborative Session:**
-As two developers working together, we successfully achieved the following milestones today:
+As a team of two developers, we successfully achieved the following milestones today:
 
 1. **Frontend Architecture:** Initialized the React + Vite frontend, configured Tailwind CSS, and set up React Router with role-based `ProtectedRoute` wrappers.
 2. **State Management:** Implemented Zustand stores (`authStore` and `idCardStore`) to handle global application state effectively.

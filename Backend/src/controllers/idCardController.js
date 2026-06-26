@@ -41,9 +41,14 @@ export const createIdCard = asyncHandler(async (req, res) => {
     throw new Error("An ID card already exists for this student email");
   }
 
-  // Create the student's login account if it doesn't exist yet
+  // Ensure the student's login account exists and is a student
   let studentUser = await User.findOne({ email: studentEmail });
-  if (!studentUser) {
+  if (studentUser) {
+    if (studentUser.role !== "student") {
+      res.status(400);
+      throw new Error("Cannot create an ID card for an admin account");
+    }
+  } else {
     studentUser = await User.create({
       name: studentName,
       email: studentEmail,

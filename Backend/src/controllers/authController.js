@@ -7,7 +7,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 // @route   POST /api/auth/register
 // @access  Public (lock this down or remove in production if not needed)
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
     res.status(400);
@@ -24,7 +24,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
-    role: role === "admin" ? "admin" : "student",
+    role: "student",
   });
 
   res.status(201).json({
