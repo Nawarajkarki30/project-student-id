@@ -1,5 +1,5 @@
 # School ID Card Generator
-
+#mylearning of making idcard generator
 A comprehensive MERN stack application designed for schools to generate, manage, and distribute student ID cards. This system features role-based access control with distinct dashboards for School Administrators and Students.
 
 ## 🚀 Features
