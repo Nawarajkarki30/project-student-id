@@ -11,6 +11,7 @@ A comprehensive MERN stack application designed for schools to generate, manage,
 - **Print ID Cards:** High-quality, print-ready views of student ID cards.
 - **Secure Access:** Protected routes and API endpoints ensuring only admins can manage data.
 
+# studentfeafures
 ### Student
 - **Simple Dashboard:** Students log in to view their specific ID card based on their email.
 - **Print:** Easily print their own ID card.
